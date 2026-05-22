@@ -1,0 +1,348 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-container: hsl(var(--primary-container));
+  --color-on-primary-container: hsl(var(--on-primary-container));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-container: hsl(var(--secondary-container));
+  --color-on-secondary-container: hsl(var(--on-secondary-container));
+  --color-tertiary: hsl(var(--tertiary));
+  --color-tertiary-container: hsl(var(--tertiary-container));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-error-container: hsl(var(--error-container));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-success: hsl(var(--success));
+  --color-warning: hsl(var(--warning));
+  --color-surface: hsl(var(--surface));
+  --color-surface-variant: hsl(var(--surface-variant));
+  --color-on-surface: hsl(var(--on-surface));
+  --color-on-surface-variant: hsl(var(--on-surface-variant));
+  --color-outline: hsl(var(--outline));
+  --color-outline-variant: hsl(var(--outline-variant));
+  --color-surface-container: hsl(var(--surface-container));
+  --color-surface-container-low: hsl(var(--surface-container-low));
+  --color-surface-container-high: hsl(var(--surface-container-high));
+  --color-surface-container-highest: hsl(var(--surface-container-highest));
+  --color-inverse-surface: hsl(var(--inverse-surface));
+  --color-inverse-on-surface: hsl(var(--inverse-on-surface));
+
+  /* MD3 Shape scale */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* MD3 Elevation shadows */
+  --shadow-elevation-1: 0 1px 2px 0 rgb(0 0 0 / 0.3), 0 1px 3px 1px rgb(0 0 0 / 0.15);
+  --shadow-elevation-2: 0 1px 2px 0 rgb(0 0 0 / 0.3), 0 2px 6px 2px rgb(0 0 0 / 0.15);
+  --shadow-elevation-3: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 4px 8px 3px rgb(0 0 0 / 0.15);
+  --shadow-elevation-4: 0 2px 3px 0 rgb(0 0 0 / 0.3), 0 6px 10px 4px rgb(0 0 0 / 0.15);
+  --shadow-elevation-5: 0 4px 4px 0 rgb(0 0 0 / 0.3), 0 8px 12px 6px rgb(0 0 0 / 0.15);
+}
+
+/* =============================================
+   Material Design 3 — Light Theme Tokens
+   ============================================= */
+:root {
+  /* Primary */
+  --primary: 271 68% 48%;         /* #6750A4 */
+  --primary-foreground: 0 0% 100%; /* #FFFFFF */
+  --primary-container: 270 100% 93%; /* #EADDFF */
+  --on-primary-container: 271 100% 17%; /* #21005D */
+
+  /* Secondary */
+  --secondary: 270 12% 40%;       /* #625B71 */
+  --secondary-foreground: 0 0% 100%;
+  --secondary-container: 270 50% 92%; /* #E8DEF8 */
+  --on-secondary-container: 271 23% 17%; /* #1D192B */
+
+  /* Tertiary */
+  --tertiary: 340 20% 41%;        /* #7D5260 */
+  --tertiary-container: 340 73% 92%; /* #FFD8E4 */
+
+  /* Error / Destructive */
+  --destructive: 3 75% 41%;       /* #B3261E */
+  --destructive-foreground: 0 0% 100%;
+  --error-container: 6 70% 92%;   /* #F9DEDC */
+
+  /* Surface & Background */
+  --background: 300 20% 99%;      /* #FFFBFE */
+  --foreground: 270 50% 11%;      /* #1C1B1F */
+  --surface: 300 20% 99%;         /* #FFFBFE */
+  --surface-variant: 270 16% 90%; /* #E7E0EC */
+  --on-surface: 270 50% 11%;      /* #1C1B1F */
+  --on-surface-variant: 270 6% 38%; /* #49454F */
+  --surface-container: 270 14% 95%; /* #F3EDF7 */
+  --surface-container-low: 270 20% 97%; /* #F7F2FA */
+  --surface-container-high: 270 12% 92%; /* #ECE6F0 */
+  --surface-container-highest: 270 10% 89%; /* #E6E0E9 */
+  --inverse-surface: 270 12% 19%; /* #313033 */
+  --inverse-on-surface: 270 14% 93%; /* #F4EFF4 */
+
+  /* Outline */
+  --outline: 270 5% 49%;          /* #79747E */
+  --outline-variant: 270 11% 79%; /* #CAC4D0 */
+
+  /* Mapped tokens for shadcn compatibility */
+  --card: 270 14% 95%;            /* surface-container */
+  --card-foreground: 270 50% 11%;
+  --popover: 300 20% 99%;         /* surface */
+  --popover-foreground: 270 50% 11%;
+  --muted: 270 14% 95%;           /* surface-container */
+  --muted-foreground: 270 6% 38%; /* on-surface-variant */
+  --accent: 270 50% 92%;          /* secondary-container */
+  --accent-foreground: 271 23% 17%; /* on-secondary-container */
+  --border: 270 11% 79%;          /* outline-variant */
+  --input: 270 11% 79%;           /* outline-variant */
+  --ring: 271 68% 48%;            /* primary */
+  --radius: 12px;                 /* MD3 medium */
+
+  /* Semantic */
+  --success: 142 71% 40%;
+  --warning: 38 92% 50%;
+  --surface-raised: 270 12% 92%;  /* surface-container-high */
+
+  /* MD3 Motion tokens */
+  --md-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --md-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --md-easing-decelerated: cubic-bezier(0, 0, 0, 1);
+  --md-easing-accelerated: cubic-bezier(0.3, 0, 1, 1);
+  --md-duration-short: 200ms;
+  --md-duration-medium: 300ms;
+  --md-duration-long: 500ms;
+
+  /* MD3 State layer opacities */
+  --md-state-hover: 0.08;
+  --md-state-focus: 0.12;
+  --md-state-pressed: 0.12;
+  --md-state-dragged: 0.16;
+}
+
+/* =============================================
+   Material Design 3 — Dark Theme Tokens
+   ============================================= */
+.dark {
+  /* Primary */
+  --primary: 270 100% 83%;        /* #D0BCFF */
+  --primary-foreground: 271 100% 27%; /* #381E72 */
+  --primary-container: 271 87% 37%; /* #4F378B */
+  --on-primary-container: 270 100% 93%; /* #EADDFF */
+
+  /* Secondary */
+  --secondary: 270 34% 82%;       /* #CCC2DC */
+  --secondary-foreground: 270 17% 25%; /* #332D41 */
+  --secondary-container: 270 12% 34%; /* #4A4458 */
+  --on-secondary-container: 270 50% 92%; /* #E8DEF8 */
+
+  /* Tertiary */
+  --tertiary: 340 43% 78%;        /* #EFB8C8 */
+  --tertiary-container: 340 20% 33%; /* #633B48 */
+
+  /* Error / Destructive */
+  --destructive: 6 100% 78%;      /* #F2B8B5 */
+  --destructive-foreground: 3 69% 24%; /* #601410 */
+  --error-container: 3 63% 31%;   /* #8C1D18 */
+
+  /* Surface & Background */
+  --background: 270 50% 11%;      /* #1C1B1F */
+  --foreground: 270 10% 89%;      /* #E6E1E5 */
+  --surface: 270 50% 11%;         /* #1C1B1F */
+  --surface-variant: 270 6% 32%;  /* #49454F */
+  --on-surface: 270 10% 89%;      /* #E6E1E5 */
+  --on-surface-variant: 270 11% 79%; /* #CAC4D0 */
+  --surface-container: 270 17% 15%; /* #211F26 */
+  --surface-container-low: 270 14% 13%; /* #1D1B20 */
+  --surface-container-high: 270 12% 19%; /* #2B2930 */
+  --surface-container-highest: 270 9% 23%; /* #36343B */
+  --inverse-surface: 270 10% 89%; /* #E6E1E5 */
+  --inverse-on-surface: 270 12% 19%; /* #313033 */
+
+  /* Outline */
+  --outline: 270 5% 57%;          /* #938F99 */
+  --outline-variant: 270 6% 32%;  /* #49454F */
+
+  /* Mapped tokens for shadcn compatibility */
+  --card: 270 17% 15%;            /* surface-container */
+  --card-foreground: 270 10% 89%;
+  --popover: 270 12% 19%;         /* surface-container-high */
+  --popover-foreground: 270 10% 89%;
+  --muted: 270 17% 15%;           /* surface-container */
+  --muted-foreground: 270 11% 79%; /* on-surface-variant */
+  --accent: 270 12% 34%;          /* secondary-container */
+  --accent-foreground: 270 50% 92%;
+  --border: 270 6% 32%;           /* outline-variant */
+  --input: 270 6% 32%;            /* outline-variant */
+  --ring: 270 100% 83%;           /* primary */
+
+  /* Semantic */
+  --success: 142 71% 45%;
+  --warning: 38 92% 50%;
+  --surface-raised: 270 12% 19%;  /* surface-container-high */
+}
+
+/* =============================================
+   Base Styles
+   ============================================= */
+* {
+  border-color: theme(--color-border);
+}
+
+body {
+  background: theme(--color-background);
+  color: theme(--color-foreground);
+  font-feature-settings: "liga" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* MD3 Focus ring — 3px offset, primary color */
+*:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}
+
+/* MD3 State layer mixin — hover overlay */
+.md3-state-layer {
+  position: relative;
+  overflow: hidden;
+}
+
+.md3-state-layer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: hsl(var(--primary) / 0);
+  transition: background var(--md-duration-short) var(--md-easing-standard);
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+.md3-state-layer:hover::before {
+  background: hsl(var(--primary) / var(--md-state-hover));
+}
+
+.md3-state-layer:active::before {
+  background: hsl(var(--primary) / var(--md-state-pressed));
+}
+
+/* =============================================
+   Keyframe Animations (MD3 Motion)
+   ============================================= */
+@keyframes command-palette-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes content-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes output-flash {
+  0%,
+  100% {
+    background: transparent;
+  }
+  50% {
+    background: hsl(var(--primary) / 0.12);
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-command-palette-in {
+  animation: command-palette-in var(--md-duration-medium) var(--md-easing-emphasized);
+}
+
+.animate-content-in {
+  animation: content-in var(--md-duration-short) var(--md-easing-decelerated);
+}
+
+.animate-output-flash {
+  animation: output-flash 400ms var(--md-easing-standard);
+}
+
+.animate-slide-in-from-left {
+  animation: slide-in-from-left var(--md-duration-medium) var(--md-easing-emphasized);
+}
+
+.animate-fade-in {
+  animation: fade-in var(--md-duration-short) var(--md-easing-decelerated);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-command-palette-in,
+  .animate-content-in,
+  .animate-output-flash,
+  .animate-slide-in-from-left,
+  .animate-fade-in {
+    animation: none !important;
+  }
+}
+
+/* =============================================
+   MD3 Scrollbar
+   ============================================= */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--outline) / 0.4);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--outline) / 0.6);
+}
