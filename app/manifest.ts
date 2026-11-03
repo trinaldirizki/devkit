@@ -1,5 +1,8 @@
 import type { MetadataRoute } from "next";
 
+// Static export support (desktop build); behavior-neutral on the web build.
+export const dynamic = "force-static";
+
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "DevTools Hub",

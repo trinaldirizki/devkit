@@ -35,18 +35,28 @@ const securityHeaders = [
   },
 ];
 
+// Desktop (macOS app) builds produce a fully static export served from the
+// app bundle via a custom WKURLSchemeHandler — no server runtime involved.
+// Web (Vercel) builds are completely unchanged (set BUILD_TARGET=desktop
+// only in desktop/build-app.sh).
+const isDesktopBuild = process.env.BUILD_TARGET === "desktop";
+
 const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: securityHeaders,
-      },
-    ];
-  },
+  ...(isDesktopBuild
+    ? { output: "export" as const, trailingSlash: true }
+    : {
+        async headers() {
+          return [
+            {
+              source: "/(.*)",
+              headers: securityHeaders,
+            },
+          ];
+        },
+      }),
 };
 
 export default nextConfig;

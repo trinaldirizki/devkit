@@ -9,6 +9,7 @@ import { tools, categories, type ToolCategory } from "@/lib/config/tools";
 import { usePreferences } from "@/lib/stores/preferences";
 import { useFavorites } from "@/lib/stores/favorites";
 import { cn } from "@/lib/utils/cn";
+import { IS_DESKTOP } from "@/lib/desktop";
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -30,6 +31,8 @@ export function Sidebar() {
       <aside
         className={cn(
           "hidden shrink-0 bg-surface-container-low transition-all duration-md-medium ease-md-standard md:flex md:flex-col",
+          IS_DESKTOP &&
+            "bg-surface/60 backdrop-blur-2xl border-r border-outline-variant/60",
           mounted && sidebarCollapsed ? "w-14" : "w-56",
         )}
       >

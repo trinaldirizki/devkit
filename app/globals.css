@@ -346,3 +346,37 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--outline) / 0.6);
 }
+
+/* =============================================
+   Desktop (macOS app) overrides
+   Applied only when <html class="desktop"> (set
+   by lib/desktop.ts IS_DESKTOP at build time).
+   ============================================= */
+.desktop {
+  /* SF system fonts — native macOS typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", monospace;
+}
+
+.desktop ::selection {
+  background: hsl(var(--primary) / 0.25);
+}
+
+/* Native macOS overlay scrollbars */
+.desktop ::-webkit-scrollbar {
+  width: 11px;
+}
+.desktop ::-webkit-scrollbar-thumb {
+  background: hsl(var(--outline) / 0.35);
+  border-radius: 9999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+.desktop ::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--outline) / 0.55);
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+.desktop ::-webkit-scrollbar-track {
+  background: transparent;
+}

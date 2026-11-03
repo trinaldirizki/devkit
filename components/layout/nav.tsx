@@ -7,10 +7,22 @@ import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { CommandPalette } from "@/components/layout/command-palette";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { SettingsDropdown } from "@/components/shared/settings-dropdown";
+import { IS_DESKTOP } from "@/lib/desktop";
 
 export function Nav() {
   const pathname = usePathname();
   const isHomepage = pathname === "/";
+
+  // Desktop (macOS app): unified toolbar row — transparent title bar with
+  // full-size content view (see desktop/main.swift) puts the traffic lights
+  // inline with this row; right-aligned controls, no brand/search/mobile nav.
+  if (IS_DESKTOP) {
+    return (
+      <header className="flex h-[52px] shrink-0 items-center justify-end gap-1 bg-surface px-3 pt-7">
+        <SettingsDropdown />
+      </header>
+    );
+  }
 
   return (
     <header className="sticky top-0 z-50 bg-surface/95 backdrop-blur-sm supports-[backdrop-filter]:bg-surface/80 shadow-elevation-1">

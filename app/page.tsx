@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Search } from "lucide-react";
+import { Search, Star } from "lucide-react";
 import { tools, categories, type ToolCategory } from "@/lib/config/tools";
 import { useFavorites } from "@/lib/stores/favorites";
 import { Nav } from "@/components/layout/nav";
+import { Sidebar } from "@/components/layout/sidebar";
 import { Footer } from "@/components/layout/footer";
 import { ToolCard } from "@/components/tools/tool-card";
+import { IS_DESKTOP } from "@/lib/desktop";
 
 export default function HomePage() {
   const { favoriteIds } = useFavorites();
@@ -33,6 +35,44 @@ export default function HomePage() {
     );
   }
 
+  // Desktop (macOS app): compact launchpad with the sidebar as primary nav —
+  // no marketing hero, no search, no footer.
+  if (IS_DESKTOP) {
+    return (
+      <div className="flex min-h-screen flex-col bg-surface">
+        <Nav />
+        <div className="flex flex-1">
+          <Sidebar />
+          <main className="flex-1 overflow-auto p-6">
+          {/* Flat launchpad grid — categories live in the sidebar; no
+              per-section headers, so rows always fill the width. */}
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-2">
+            {favoriteTools.length > 0 && (
+              <div className="col-span-full flex items-center gap-1.5 text-[12px] font-medium uppercase tracking-wider text-on-surface-variant">
+                <Star className="h-3.5 w-3.5 fill-warning text-warning" />
+                Favorites
+              </div>
+            )}
+            {favoriteTools.map((tool) => (
+              <Link key={tool.id} href={`/${tool.slug}`}>
+                <ToolCard tool={tool} />
+              </Link>
+            ))}
+            <div className="col-span-full text-[12px] font-medium uppercase tracking-wider text-on-surface-variant">
+              All Tools
+            </div>
+            {tools.map((tool) => (
+              <Link key={tool.id} href={`/${tool.slug}`}>
+                <ToolCard tool={tool} />
+              </Link>
+            ))}
+          </div>
+          </main>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex min-h-screen flex-col bg-surface">
       <Nav />
@@ -49,7 +89,7 @@ export default function HomePage() {
             </p>
             <button
               onClick={openCommandPalette}
-              className="mt-8 flex items-center gap-3 rounded-xl bg-surface-container-high px-4 py-3.5 text-[14px] leading-[20px] text-on-surface-variant shadow-elevation-1 transition-shadow duration-md-short ease-md-standard hover:shadow-elevation-2 w-full max-w-sm"
+              className="mt-8 flex items-center gap-3 rounded-xl bg-surface-container-high px-4 py-3.5 text-[14px] leading-[20px] text-on-surface-variant shadow-elevation-1 transition-shadow duration-md-short ease-md-short hover:shadow-elevation-2 w-full max-w-sm"
             >
               <Search className="h-[18px] w-[18px] shrink-0" />
               <span className="flex-1 text-left">Search tools...</span>

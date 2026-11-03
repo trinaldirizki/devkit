@@ -4,6 +4,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Settings } from "lucide-react";
 import { usePreferences, type EditorFontSize } from "@/lib/stores/preferences";
 import { cn } from "@/lib/utils/cn";
+import { IS_DESKTOP } from "@/lib/desktop";
 
 const fontSizes: EditorFontSize[] = [12, 14, 16, 18];
 const indentSizes = [2, 4] as const;
@@ -93,7 +94,9 @@ export function SettingsDropdown() {
               <span className="text-on-surface">Word wrap</span>
               <span
                 className={cn(
-                  "flex h-[18px] w-[18px] items-center justify-center rounded-xs border-2 text-[10px] font-bold transition-colors duration-md-short ease-md-standard",
+                  "flex h-[18px] w-[18px] items-center justify-center border-2 text-[10px] font-bold transition-colors duration-md-short ease-md-standard",
+                  // macOS uses circular checkboxes; web keeps squares.
+                  IS_DESKTOP ? "rounded-full" : "rounded-xs",
                   wordWrap
                     ? "border-primary bg-primary text-primary-foreground"
                     : "border-outline",
@@ -111,7 +114,9 @@ export function SettingsDropdown() {
               <span className="text-on-surface">Line numbers</span>
               <span
                 className={cn(
-                  "flex h-[18px] w-[18px] items-center justify-center rounded-xs border-2 text-[10px] font-bold transition-colors duration-md-short ease-md-standard",
+                  "flex h-[18px] w-[18px] items-center justify-center border-2 text-[10px] font-bold transition-colors duration-md-short ease-md-standard",
+                  // macOS uses circular checkboxes; web keeps squares.
+                  IS_DESKTOP ? "rounded-full" : "rounded-xs",
                   lineNumbers
                     ? "border-primary bg-primary text-primary-foreground"
                     : "border-outline",

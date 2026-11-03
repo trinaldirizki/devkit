@@ -4,6 +4,7 @@ import { Star } from "lucide-react";
 import type { ToolDefinition } from "@/lib/config/tools";
 import { useFavorites } from "@/lib/stores/favorites";
 import { cn } from "@/lib/utils/cn";
+import { IS_DESKTOP } from "@/lib/desktop";
 
 interface ToolCardProps {
   tool: ToolDefinition;
@@ -18,7 +19,9 @@ export function ToolCard({ tool, className }: ToolCardProps) {
   return (
     <div
       className={cn(
-        "group relative rounded-md bg-surface-container p-5 shadow-elevation-1 transition-all duration-md-short ease-md-standard hover:shadow-elevation-2 hover:bg-surface-container-high",
+        "group relative rounded-md bg-surface-container shadow-elevation-1 transition-all duration-md-short ease-md-standard hover:shadow-elevation-2 hover:bg-surface-container-high",
+        // Desktop (macOS): compact native density; web keeps the airier card.
+        IS_DESKTOP ? "p-4" : "p-5",
         className,
       )}
     >
@@ -48,14 +51,38 @@ export function ToolCard({ tool, className }: ToolCardProps) {
       </button>
 
       <div className="flex items-start gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-container">
-          <Icon className="h-5 w-5 text-on-primary-container" />
+        <div
+          className={cn(
+            "flex shrink-0 items-center justify-center rounded-lg bg-primary-container",
+            IS_DESKTOP ? "h-9 w-9" : "h-10 w-10",
+          )}
+        >
+          <Icon
+            className={cn(
+              "text-on-primary-container",
+              IS_DESKTOP ? "h-[18px] w-[18px]" : "h-5 w-5",
+            )}
+          />
         </div>
         <div className="min-w-0">
-          <h3 className="text-[16px] font-medium leading-[24px] text-on-surface">
+          <h3
+            className={cn(
+              "font-medium text-on-surface",
+              IS_DESKTOP
+                ? "text-[14px] leading-[20px]"
+                : "text-[16px] leading-[24px]",
+            )}
+          >
             {tool.name}
           </h3>
-          <p className="mt-0.5 text-[14px] leading-[20px] text-on-surface-variant">
+          <p
+            className={cn(
+              "mt-0.5 text-on-surface-variant",
+              IS_DESKTOP
+                ? "line-clamp-2 text-[12px] leading-[16px]"
+                : "text-[14px] leading-[20px]",
+            )}
+          >
             {tool.description}
           </p>
         </div>

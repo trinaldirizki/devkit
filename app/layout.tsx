@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Roboto, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { siteConfig } from "@/lib/config/site";
+import { IS_DESKTOP } from "@/lib/desktop";
 import "@/app/globals.css";
 
 const roboto = Roboto({
@@ -61,9 +62,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={IS_DESKTOP ? "desktop" : undefined}
+    >
       <body
-        className={`${roboto.variable} ${jetbrainsMono.variable} font-sans antialiased`}
+        className={`${IS_DESKTOP ? "" : `${roboto.variable} ${jetbrainsMono.variable} `}font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"
